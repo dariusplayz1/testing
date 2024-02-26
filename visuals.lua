@@ -6,6 +6,7 @@
 |
 --]]------------------------------------------------
 
+
 -- Services
 local Workspace = game:GetService("Workspace")
 local Camera = Workspace.CurrentCamera
@@ -149,8 +150,8 @@ function ESP:Get_Tool(Player)
     if self.Overrides.Get_Tool ~= nil then
         return self.Overrides.Get_Tool(Player)
     end
-    if Player.handModel ~= nil then
-        return tostring(Player.handModel)
+    if Player.equippedItem then
+        return tostring(Player.equippedItem.type)
     else
         return "Hands"
     end
