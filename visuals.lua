@@ -150,11 +150,15 @@ function ESP:Get_Tool(Player)
     if self.Overrides.Get_Tool ~= nil then
         return self.Overrides.Get_Tool(Player)
     end
+    
     if Player.equippedItem then
+        if Player.equippedItem.type then
         return tostring(Player.equippedItem.type)
+        end
     else
         return "Hands"
     end
+   
     return "Hands"
 end
 
