@@ -142,11 +142,6 @@ function ESP:Get_Character(Player)
     if ESP.Overrides.Get_Character ~= nil then
         return ESP.Overrides.Get_Character(Player)
     end
-    if Player:IsA("Model") then
-        return Player
-    else
-    return Player.model
-    end
     return Player.model
 end
 
