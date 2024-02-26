@@ -150,7 +150,7 @@ function ESP:Get_Tool(Player)
         return self.Overrides.Get_Tool(Player)
     end
     if Player.handModel ~= nil then
-        return Player.handModel
+        return tostring(Player.handModel)
     else
         return "Hands"
     end
