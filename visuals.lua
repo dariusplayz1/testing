@@ -149,12 +149,10 @@ function ESP:Get_Tool(Player)
     if self.Overrides.Get_Tool ~= nil then
         return self.Overrides.Get_Tool(Player)
     end
-    local Character = self:Get_Character(Player)
-    if Character then
-        local Tool = Character:FindFirstChildOfClass("Tool")
-        if Tool then
-            return Tool.Name
-        end
+    if Player.handModel ~= nil then
+        return Player.handModel
+    else
+        return "Hands"
     end
     return "Hands"
 end
