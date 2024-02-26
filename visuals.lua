@@ -160,16 +160,6 @@ function ESP:Get_Tool(Player)
 end
 
 function ESP:Get_Health(Player)
-    if self.Overrides.Get_Character ~= nil then
-        return self.Overrides.Get_Health(Player)
-    end
-    local Character = self:Get_Character(Player)
-    if Character then
-        local Humanoid = Character:FindFirstChildOfClass("Humanoid")
-        if Humanoid then
-            return Humanoid.Health
-        end
-    end
     return 100
 end
 
@@ -253,8 +243,8 @@ do -- Player Metatable
         end
         local Character = ESP:Get_Character(self.Player)
         if Character ~= nil then
-            local Head, HumanoidRootPart, Humanoid = Character:FindFirstChild("Head"), Character:FindFirstChild("HumanoidRootPart"), Character:FindFirstChildOfClass("Humanoid")
-            if not Humanoid then
+            local Head, HumanoidRootPart = Character:FindFirstChild("Head"), Character:FindFirstChild("HumanoidRootPart")
+            if not HumanoidRootPart then
                 Box.Visible = false
                 Box_Outline.Visible = false
                 Healthbar.Visible = false
@@ -273,7 +263,7 @@ do -- Player Metatable
                 Image.Visible = false
                 return
             end
-            local Current_Health, Health_Maximum = ESP:Get_Health(self.Player), Humanoid.MaxHealth
+            local Current_Health, Health_Maximum = 100,100
             if Head and HumanoidRootPart and Current_Health > 0 then
                 local Dimensions = Framework:Get_Bounding_Vectors(HumanoidRootPart)
                 local HRP_Position, On_Screen = Camera:WorldToViewportPoint(HumanoidRootPart.Position)
@@ -748,7 +738,7 @@ local Connection = RunService.RenderStepped:Connect(function()
         local China_Hat = ESP.China_Hat
         for i = 1, #ESP.China_Hat do
             local Line, Triangle = China_Hat[i][1], China_Hat[i][2];
-            if LocalPlayer.Character ~= nil and LocalPlayer.Character:FindFirstChild('Head') and LocalPlayer.Character.Humanoid.Health > 0 then
+            if LocalPlayer.Character ~= nil and LocalPlayer.Character:FindFirstChild('Head') and 100 > 0 then
                 local Position = LocalPlayer.Character.Head.Position + Vector3.new(0, China_Hat_Settings.Offset, 0);
                 local Last, Next = (i / 30) * math.pi*2, ((i + 1) / 30) * math.pi*2;
                 local lastScreen, onScreenLast = Camera:WorldToViewportPoint(Position + (Vector3.new(math.cos(Last), 0, math.sin(Last)) * China_Hat_Settings.Radius));
