@@ -152,7 +152,7 @@ function ESP:Get_Tool(Player)
     end
     
     if Player.equippedItem then
-      print(tostring(Player.equippedItem.type))
+   
       return tostring(Player.equippedItem.type)
     else
         return "Hands"
