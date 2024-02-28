@@ -490,22 +490,29 @@ do -- Player Metatable
                     end
                     local itemtext,cnd,max_cnd = ESP:Get_Tool(self.Player)
                     Tool.Text = itemtext
+                    ToolBold.Text = itemtext
                     if not ESP.first then
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    else
+                    ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
+                    elseif itemtext ~= "Hands" then
                         if tonumber(max_cnd) / tonumber(cnd) > 0.70 then
                             Tool.Color = Color3.new(0,1,0)
+                            ToolBold.Color = Color3.new(0,1,0)
                         elseif tonumber(max_cnd) / tonumber(cnd) > 0.40 and tonumber(max_cnd) / tonumber(cnd) < 0.70 then
                             Tool.Color = Color3.new(0.82,0.69,0.05)
+                            ToolBold.Color = Color3.new(0.82,0.69,0.05)
                         elseif tonumber(max_cnd) / tonumber(cnd) > 0 and tonumber(max_cnd) / tonumber(cnd) < 0.40 then
                             Tool.Color = Color3.new(1,0,0)
+                            ToolBold.Color = Color3.new(1,0,0)
                         end
+                    else
+                    Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
+                    ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     end
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
-                    ToolBold.Text = ESP:Get_Tool(self.Player)
-                    ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
+                    
                     ToolBold.OutlineColor = Tool_Settings.OutlineColor
                     ToolBold.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     ToolBold.Position = Tool.Position + Vector2.new(1, 0)
