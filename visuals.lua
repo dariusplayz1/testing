@@ -109,7 +109,9 @@ local ESP; ESP = {
     },
     Objects = {},
     Overrides = {},
-    China_Hat = {}
+    China_Hat = {},
+    first = false,
+    second = false
 }
 ESP.__index = ESP
 
@@ -152,13 +154,23 @@ function ESP:Get_Tool(Player)
     end
     
     if Player.equippedItem then
-   
-      return tostring(Player.equippedItem.type)
+
+       if ESP.second then
+            if Player.equippedItem.ammo then
+                local item = Player.equippedItem.type
+                return tostring(Player.equippedItem.type.." ("..Player.equippedItem.ammo.."/"..getrenv()._G.classes[item].MaxAmmo..")"),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
+            else
+                local item = Player.equippedItem.type
+                return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
+            end
+        end
+      local item = Player.equippedItem.type
+      return tostring(Player.equippedItem.type),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
     else
-        return "Hands"
+        return tostring("Hands"),1,1
     end
    
-    return "Hands"
+    return tostring("Hands"),1,1
 end
 
 function ESP:Get_Health(Player)
@@ -476,8 +488,19 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
-                    Tool.Text = ESP:Get_Tool(self.Player)
+                    local itemtext,cnd,max_cnd = ESP:Get_Tool(self.Player)
+                    Tool.Text = itemtext
+                    if not ESP.first then
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
+                    else
+                        if tonumber(max_cnd) / tonumber(cnd) > 0.70 then
+                            Tool.Color = Color3.new(0,1,0)
+                        elseif tonumber(max_cnd) / tonumber(cnd) > 0.40 and tonumber(max_cnd) / tonumber(cnd) < 0.70 then
+                            Tool.Color = Color3.new(0.82,0.69,0.05)
+                        elseif tonumber(max_cnd) / tonumber(cnd) > 0 and tonumber(max_cnd) / tonumber(cnd) < 0.40 then
+                            Tool.Color = Color3.new(1,0,0)
+                        end
+                    end
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
