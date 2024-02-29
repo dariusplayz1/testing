@@ -156,25 +156,23 @@ function ESP:Get_Tool(Player)
     if Player.equippedItem then
 
        if ESP.second then
-        if Player.equippedItem.cnd then
+       
             if Player.equippedItem.ammo then
                 local item = Player.equippedItem.type
-                return tostring(Player.equippedItem.type.." ("..Player.equippedItem.ammo.."/"..getrenv()._G.classes[item].MaxAmmo..")"),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
+                return tostring(Player.equippedItem.type.." ("..Player.equippedItem.ammo.."/"..getrenv()._G.classes[item].MaxAmmo..")")
             else
                 local item = Player.equippedItem.type
-                return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
+                return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt)
             end
+       
         else
-            return tostring(Player.equippedItem.type),0,100
-        end
-        else
-      return tostring(Player.equippedItem.type),0,100
+      return tostring(Player.equippedItem.type)
         end
     else
-        return tostring("Hands"),1,1
+        return tostring("Hands")
     end
    
-    return tostring("Hands"),1,1
+    return tostring("Hands")
 end
 
 function ESP:Get_Health(Player)
@@ -492,47 +490,14 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
-                    local itemtext,cnd,max_cnd = ESP:Get_Tool(self.Player)
+                    local itemtext = ESP:Get_Tool(self.Player)
        
                     Tool.Text = itemtext
                     ToolBold.Text = itemtext
-                    if not ESP.first then
+                   
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    elseif itemtext ~= "Hands" then
-                        if tonumber(cnd) ~= 0 then
-                        if tonumber(max_cnd) / tonumber(cnd) > 1 and tonumber(max_cnd) / tonumber(cnd) < 1.4 then
-                      
-                            Tool.Color = Color3.new(0,1,0)
-                            ToolBold.Color = Color3.new(0,1,0)
-                        elseif tonumber(max_cnd) / tonumber(cnd) > 1.40 and tonumber(max_cnd) / tonumber(cnd) < 2.3 then
-                           
-                            Tool.Color = Color3.new(0.82,0.69,0.05)
-                            ToolBold.Color = Color3.new(0.82,0.69,0.05)
-                        elseif tonumber(max_cnd) / tonumber(cnd) > 2.3 then
-                         
-                            Tool.Color = Color3.new(1,0,0)
-                            ToolBold.Color = Color3.new(1,0,0)
-                        end
-                        else
-                        if tonumber(max_cnd) / 1 > 1 and tonumber(max_cnd) / 1 < 1.4 then
-                       
-                            Tool.Color = Color3.new(0,1,0)
-                            ToolBold.Color = Color3.new(0,1,0)
-                        elseif tonumber(max_cnd) / 1 > 1.40 and tonumber(max_cnd) / 1 < 2.3 then
-                           
-                            Tool.Color = Color3.new(0.82,0.69,0.05)
-                            ToolBold.Color = Color3.new(0.82,0.69,0.05)
-                        elseif tonumber(max_cnd) / 1 > 2.3 then
-                          
-                            Tool.Color = Color3.new(1,0,0)
-                            ToolBold.Color = Color3.new(1,0,0)
-                        end
-                        end
-                    else
-                    Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    end
+                 
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
