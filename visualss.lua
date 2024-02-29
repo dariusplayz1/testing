@@ -170,9 +170,8 @@ function ESP:Get_Tool(Player)
         return tostring("Hands")
     end
    
-    return tostring("Hands")
 end
-end
+
 function ESP:Get_Health(Player)
     return 100
 end
