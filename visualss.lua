@@ -500,7 +500,7 @@ do -- Player Metatable
                     if not ESP.first then
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    else itemtext ~= "Hands"
+                    elseif itemtext ~= "Hands"
                         if tonumber(max_cnd) / tonumber(cnd) > 0.70 then
                             Tool.Color = Color3.new(0,1,0)
                             ToolBold.Color = Color3.new(0,1,0)
