@@ -163,17 +163,16 @@ function ESP:Get_Tool(Player)
                 local item = Player.equippedItem.type
                 return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt)
             end
-       
-        else
+      else
       return tostring(Player.equippedItem.type)
-        end
+      end
     else
         return tostring("Hands")
     end
    
     return tostring("Hands")
 end
-
+end
 function ESP:Get_Health(Player)
     return 100
 end
