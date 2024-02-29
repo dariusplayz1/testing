@@ -169,7 +169,7 @@ function ESP:Get_Tool(Player)
     else
         return "Hands"
     end
-   return "Hands
+  
 end
 
 function ESP:Get_Health(Player)
