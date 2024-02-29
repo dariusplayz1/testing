@@ -165,11 +165,11 @@ function ESP:Get_Tool(Player)
                 return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
             end
         else
-            return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
+            return tostring(Player.equippedItem.type),0,100
         end
-        end
-      local item = Player.equippedItem.type
+        else
       return tostring(Player.equippedItem.type),0,100
+        end
     else
         return tostring("Hands"),1,1
     end
