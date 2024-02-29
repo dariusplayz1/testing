@@ -110,7 +110,6 @@ local ESP; ESP = {
     Objects = {},
     Overrides = {},
     China_Hat = {},
-    first = false,
     second = false
 }
 ESP.__index = ESP
@@ -493,15 +492,13 @@ do -- Player Metatable
                    
                        
                     Tool.Text = ESP:Get_Tool(self.Player)
-                    ToolBold.Text = ESP:Get_Tool(self.Player)
-                   
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                 
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
-                    
+
+                    ToolBold.Text = ESP:Get_Tool(self.Player)
+                    ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.OutlineColor = Tool_Settings.OutlineColor
                     ToolBold.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     ToolBold.Position = Tool.Position + Vector2.new(1, 0)
