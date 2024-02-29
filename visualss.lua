@@ -167,9 +167,9 @@ function ESP:Get_Tool(Player)
       return tostring(Player.equippedItem.type)
       end
     else
-        return tostring("Hands")
+        return "Hands"
     end
-   
+   return "Hands
 end
 
 function ESP:Get_Health(Player)
