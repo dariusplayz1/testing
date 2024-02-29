@@ -490,10 +490,10 @@ do -- Player Metatable
                         end
                         Right_Offset = Right_Offset + 10
                     end
-                    local itemtext = ESP:Get_Tool(self.Player)
-       
-                    Tool.Text = itemtext
-                    ToolBold.Text = itemtext
+                   
+                       
+                    Tool.Text = ESP:Get_Tool(self.Player)
+                    ToolBold.Text = ESP:Get_Tool(self.Player)
                    
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
