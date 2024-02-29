@@ -156,12 +156,16 @@ function ESP:Get_Tool(Player)
     if Player.equippedItem then
 
        if ESP.second then
+            if Player.equippedItem.cnd then
             if Player.equippedItem.ammo then
                 local item = Player.equippedItem.type
                 return tostring(Player.equippedItem.type.." ("..Player.equippedItem.ammo.."/"..getrenv()._G.classes[item].MaxAmmo..")"),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
             else
                 local item = Player.equippedItem.type
                 return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt),Player.equippedItem.cnd,getrenv()._G.classes[item].MaxCondition
+            end
+            else
+                return tostring(Player.equippedItem.type),69,69
             end
         end
       local item = Player.equippedItem.type
@@ -489,12 +493,17 @@ do -- Player Metatable
                         Right_Offset = Right_Offset + 10
                     end
                     local itemtext,cnd,max_cnd = ESP:Get_Tool(self.Player)
+                    warn("-------------------------")
+                    print(itemtext)
+                    print(cnd)
+                    print(max_cnd)
+                    warn("-------------------------")
                     Tool.Text = itemtext
                     ToolBold.Text = itemtext
                     if not ESP.first then
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    elseif itemtext ~= "Hands" then
+                    elseif itemtext ~= "Hands" or cnd ~= 69 or max_cnd ~= 69  then
                         if tonumber(max_cnd) / tonumber(cnd) > 0.70 then
                             Tool.Color = Color3.new(0,1,0)
                             ToolBold.Color = Color3.new(0,1,0)
@@ -505,7 +514,7 @@ do -- Player Metatable
                             Tool.Color = Color3.new(1,0,0)
                             ToolBold.Color = Color3.new(1,0,0)
                         end
-                    else
+                    elseif itemtext == "Hands" or cnd == 69 or max_cnd = 69 then
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     end
