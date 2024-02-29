@@ -148,7 +148,27 @@ function ESP:Get_Character(Player)
 end
 
 function ESP:Get_Tool(Player)
-  
+      if self.Overrides.Get_Tool ~= nil then
+        return self.Overrides.Get_Tool(Player)
+    end
+    
+    if Player.equippedItem then
+
+       if ESP.second then
+       
+            if Player.equippedItem.ammo then
+                local item = Player.equippedItem.type
+                return tostring(Player.equippedItem.type.." ("..Player.equippedItem.ammo.."/"..getrenv()._G.classes[item].MaxAmmo..")")
+            else
+                local item = Player.equippedItem.type
+                return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt)
+            end
+      else
+      return tostring(Player.equippedItem.type)
+      end
+    else
+        return "Hands"
+    end
    return "Hands
 end
 
@@ -468,13 +488,11 @@ do -- Player Metatable
                         Right_Offset = Right_Offset + 10
                     end
                    
-                       
                     Tool.Text = ESP:Get_Tool(self.Player)
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     Tool.OutlineColor = Tool_Settings.OutlineColor
                     Tool.Transparency = Framework:Drawing_Transparency(Tool_Settings.Transparency)
                     Tool.Visible = Tool_Settings.Enabled
-
                     ToolBold.Text = ESP:Get_Tool(self.Player)
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.OutlineColor = Tool_Settings.OutlineColor
