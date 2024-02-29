@@ -148,27 +148,7 @@ function ESP:Get_Character(Player)
 end
 
 function ESP:Get_Tool(Player)
-    if self.Overrides.Get_Tool ~= nil then
-        return self.Overrides.Get_Tool(Player)
-    end
-    
-    if Player.equippedItem then
-
-       if ESP.second then
-       
-            if Player.equippedItem.ammo then
-                local item = Player.equippedItem.type
-                return tostring(Player.equippedItem.type.." ("..Player.equippedItem.ammo.."/"..getrenv()._G.classes[item].MaxAmmo..")")
-            else
-                local item = Player.equippedItem.type
-                return tostring(Player.equippedItem.type.." x"..Player.equippedItem.amt)
-            end
-      else
-      return tostring(Player.equippedItem.type)
-      end
-    else
-        return "Hands"
-    end
+  
    return "Hands
 end
 
