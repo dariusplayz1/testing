@@ -493,17 +493,16 @@ do -- Player Metatable
                         Right_Offset = Right_Offset + 10
                     end
                     local itemtext,cnd,max_cnd = ESP:Get_Tool(self.Player)
-                    warn("-------------------------")
-                    print(itemtext)
+
                     print(cnd)
                     print(max_cnd)
-                    warn("-------------------------")
+       
                     Tool.Text = itemtext
                     ToolBold.Text = itemtext
                     if not ESP.first then
                     Tool.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
                     ToolBold.Color = Is_Highlighted and Highlight_Color or Tool_Settings.Color
-                    elseif itemtext ~= "Hands" or cnd ~= 69 or max_cnd ~= 69  then
+                    elseif itemtext ~= "Hands" or cnd ~= 69 or max_cnd ~= 69 then
                         if tonumber(max_cnd) / tonumber(cnd) > 0.70 then
                             Tool.Color = Color3.new(0,1,0)
                             ToolBold.Color = Color3.new(0,1,0)
