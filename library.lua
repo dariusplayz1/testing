@@ -103,7 +103,7 @@ library.themes = {
         }
     },
     {
-        name = 'Informant_V1',
+        name = 'Moonlight',
         theme = {
             ['Accent']                    = fromrgb(103,89,179);
             ['Background']                = fromrgb(22,22,31);
