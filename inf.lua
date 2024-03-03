@@ -4490,7 +4490,7 @@ function library:init()
             objects = {};
             text = {
                 {"Dopamine.wtf", true},
-                {gamename, true},
+                {tostring(library.gamename), true},
                 {getgenv().luaguardvars.DiscordName, true},
                 {'0 fps', true},
                 {'0ms', true},
