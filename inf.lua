@@ -605,9 +605,6 @@ function library:init()
     end
 
     function self:SaveConfig(name)
-        if not self:GetConfig(name) then
-            return
-        end
 
         local s,e = pcall(function()
             local cfg = {};
