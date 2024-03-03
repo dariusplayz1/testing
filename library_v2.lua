@@ -945,7 +945,7 @@ function library:init()
             })
 
             objs.textlabel = utility:Draw('Text', {
-                Position = newUDim2(.5,0,0,1);
+                Position = newUDim2(.5,0,0,.8);
                 ThemeColor = 'Primary Text';
                 Text = indicator.title;
                 Size = 13;
