@@ -1634,7 +1634,7 @@ function library:init()
             function window.colorpicker:Visualize(c3, a)
                 if typeof(c3) ~= 'Color3' then return end
                 if typeof(a) ~= 'number' then return end
-                local h,s,v = c3:ToHSV();
+                local h,s,v = c3:ToHSV(c3);
                 h = h == 0 and 1 or h;
                 self.color = c3;
                 self.trans = a;
