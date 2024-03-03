@@ -3891,7 +3891,9 @@ function library:init()
                         if apply then
                             box:SetInput(input);
                         end
+                        if c then
                         c:Disconnect();
+                        end
                     end
 
                     tooltip(box);
