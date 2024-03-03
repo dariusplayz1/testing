@@ -71,7 +71,7 @@ local library = {
     opening = false;
     hasInit = false;
     cheatname = startupArgs.cheatname or 'dopamine';
-    gamename = startupArgs.gamename or '[trident survival]';
+    gamename = startupArgs.gamename or 'trident survival';
     fileext = startupArgs.fileext or '.txt';
 }
 
