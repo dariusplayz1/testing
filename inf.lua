@@ -4636,13 +4636,9 @@ function library:CreateSettingsTab(menu)
             actionservice:UnbindAction('FreezeMovement');
         end
     end})
-
-    mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()
-
-    end})
     
     mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
-        setclipboard('https://discord.gg/'..getgenv().Config.Invite)
+        setclipboard("https://discord.gg/GUGe685AEJ")
     end})
 
     mainSection:AddButton({text = 'Rejoin Server', confirm = true, callback = function()
