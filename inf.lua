@@ -71,7 +71,7 @@ local library = {
     opening = false;
     hasInit = false;
     cheatname = startupArgs.cheatname or 'dopamine';
-    gamename = startupArgs.gamename or 'ts';
+    gamename = startupArgs.gamename or '[trident survival]';
     fileext = startupArgs.fileext or '.txt';
 }
 
@@ -4489,8 +4489,8 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {"informant.wtf", true},
-                {"V"..getgenv().Config.Version, true},
+                {"Dopamine.wtf", true},
+                {gamename, true},
                 {getgenv().luaguardvars.DiscordName, true},
                 {'0 fps', true},
                 {'0ms', true},
