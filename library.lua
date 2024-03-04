@@ -1639,6 +1639,7 @@ function library:init()
                 if typeof(c3) ~= 'Color3' then return end
                 if typeof(a) ~= 'number' then return end
                 local h,s,v = c3:ToHSV(c3);
+                s = 1 - s
                 h = h == 0 and 1 or h;
                 self.color = c3;
                 self.trans = a;
