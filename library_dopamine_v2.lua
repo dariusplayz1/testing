@@ -43,6 +43,7 @@ local library = {
     tweens = {};
     theme = {};
     usenotifications = false;
+    Accent = fromrgb(204, 45, 45);
     zindexOrder = {
         ['indicator'] = 950;
         ['window'] = 1000;
@@ -4698,6 +4699,7 @@ function library:CreateSettingsTab(menu)
                 for x, d in pairs(library.options) do
                     if v.theme[tostring(x)] ~= nil then
                         d:SetColor(v.theme[tostring(x)])
+                        library.Accent = v.theme.Accent
                     end
                 end
                 library:SetTheme(v.theme)
