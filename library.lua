@@ -1409,6 +1409,7 @@ function library:init()
                     Color = c3new(1,0,0);
                     ZIndex = z+2;
                     Parent = objs.background;
+                    Visible = false;
                 })
 
                 objs.trans = utility:Draw('Image', {
@@ -1416,6 +1417,7 @@ function library:init()
                     Data = library.images.colortrans;
                     ZIndex = z+3;
                     Parent = objs.transColor;
+                     Visible = false;    
                 })
 
                 objs.transBorder = utility:Draw('Square', {
@@ -1424,6 +1426,7 @@ function library:init()
                     ThemeColor = 'Border';
                     ZIndex = z+1;
                     Parent = objs.transColor;
+                     Visible = false;
                 })
 
                 objs.transDetector = utility:Draw('Square',{
@@ -1431,6 +1434,7 @@ function library:init()
                     Transparency = 0;
                     ZIndex = z+10;
                     Parent = objs.transColor;
+                     Visible = false;
                 })
 
                 objs.pointer = utility:Draw('Square', {
@@ -1439,6 +1443,7 @@ function library:init()
                     Color = c3new(1,1,1);
                     ZIndex = z+6;
                     Parent = objs.mainColor;
+                        
                 })
 
                 objs.pointerBorder = utility:Draw('Square', {
@@ -1469,6 +1474,7 @@ function library:init()
                     Color = c3new(1,1,1);
                     ZIndex = z+5;
                     Parent = objs.trans;
+                     Visible = false;
                 })
 
                 objs.transSliderBorder = utility:Draw('Square', {
@@ -1477,6 +1483,8 @@ function library:init()
                     Color = c3new(0,0,0);
                     ZIndex = z+4;
                     Parent = objs.transSlider;
+                     Visible = false;
+                    
                 })
 
                 objs.rBackground = utility:Draw('Square', {
@@ -1594,7 +1602,7 @@ function library:init()
                         Y = (objs.trans.Object.Position.Y + objs.trans.Object.Size.Y) - objs.trans.Object.Position.Y
                         Y = math.clamp((pos.Y - objs.transColor.Object.Position.Y) / Y, 0, 0.995)
                         window.colorpicker.selected:SetTrans(Y);
-                        window.colorpicker:Visualize(window.colorpicker.selected.color, 1 - Y);
+                        window.colorpicker:Visualize(window.colorpicker.selected.color, Y);
                     end
                 end
 
