@@ -1573,7 +1573,7 @@ function library:init()
                         Y = (objs.mainColor.Object.Position.Y + objs.mainColor.Object.Size.Y) - objs.mainColor.Object.Position.Y
                         X = math.clamp((pos.X - objs.mainColor.Object.Position.X) / X, 0, 0.995)
                         Y = math.clamp((pos.Y - objs.mainColor.Object.Position.Y) / Y, 0, 0.995)
-                        sat, val = 1 - X, 1 - Y;
+                        val = 1 - Y;
                         window.colorpicker.selected:SetColor(fromhsv(hue,sat,val));
                         window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
