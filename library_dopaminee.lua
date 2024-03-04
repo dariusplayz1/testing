@@ -4754,7 +4754,7 @@ function library:CreateSettingsTab(menu)
             end
         end
         setByPreset = false
-    end}):Select('Default');
+    end}):Select('Moonlight');
 
     return settingsTab;
 end
