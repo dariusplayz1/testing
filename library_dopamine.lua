@@ -3903,7 +3903,7 @@ function library:init()
                     return box
                 end
 
-                -- // Keybind
+-- // Keybind
                 function section:AddBind(data)
                     local bind = {
                         class = 'bind';
@@ -4070,7 +4070,7 @@ function library:init()
                     end)
 
                     tooltip(bind);
-                    bind:SetBind(bind.key);
+                    bind:SetBind(bind.bind);
                     bind:SetText(bind.text);
                     self:UpdateOptions();
                     return bind
