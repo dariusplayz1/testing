@@ -60,6 +60,7 @@ local library = {
         ['gradientp45'] = 'https://raw.githubusercontent.com/portallol/luna/main/modules/gradient45.png';
         ['colorhue'] = 'https://raw.githubusercontent.com/portallol/luna/main/modules/lgbtqshit.png';
         ['colortrans'] = 'https://raw.githubusercontent.com/portallol/luna/main/modules/trans.png';
+        ["blackgr"] = "https://github.com/dariusplayz1/testing/blob/main/black%20gradient.png?raw=true";
     };
     numberStrings = {['Zero'] = 0, ['One'] = 1, ['Two'] = 2, ['Three'] = 3, ['Four'] = 4, ['Five'] = 5, ['Six'] = 6, ['Seven'] = 7, ['Eight'] = 8, ['Nine'] = 9};
     signal = loadstring(game:HttpGet('https://raw.githubusercontent.com/dariusplayz1/testing/main/seel.lua'))();
@@ -1571,7 +1572,7 @@ function library:init()
                         X = math.clamp((pos.X - objs.mainColor.Object.Position.X) / X, 0, 0.995)
                         Y = math.clamp((pos.Y - objs.mainColor.Object.Position.Y) / Y, 0, 0.995)
                         sat, val = 1 - X, 1 - Y;
-                        window.colorpicker.selected:SetColor(fromhsv(hue,1 - sat,val));
+                        window.colorpicker.selected:SetColor(fromhsv(hue,sat,val));
                         window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
@@ -1582,7 +1583,7 @@ function library:init()
                         X = (objs.hue.Object.Position.X + objs.hue.Object.Size.X) - objs.hue.Object.Position.X
                         X = math.clamp((pos.X - objs.hue.Object.Position.X) / X, 0, 0.995)
                         hue = 1 - X
-                        window.colorpicker.selected:SetColor(fromhsv(hue,1 - sat,val));
+                        window.colorpicker.selected:SetColor(fromhsv(hue,sat,val));
                         window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
