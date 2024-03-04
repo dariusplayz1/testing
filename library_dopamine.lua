@@ -775,11 +775,11 @@ function library:init()
     end
 
     function self.UpdateThemeColors()
-        library.Accent = library.theme[v.Accent]
+       
         for _,v in next, library.drawings do
             if v.ThemeColor and library.theme[v.ThemeColor] then
                 v.Object.Color = utility:AddRGB(library.theme[v.ThemeColor],fromrgb(v.ThemeColorOffset,v.ThemeColorOffset,v.ThemeColorOffset))
-                
+                library.Accent = library.theme[v.Accent]
             end
             if v.ThemeColorOutline and library.theme[v.ThemeColorOutline] then
                 v.Object.OutlineColor = utility:AddRGB(library.theme[v.ThemeColorOutline],fromrgb(v.OutlineThemeColorOffset,v.OutlineThemeColorOffset,v.OutlineThemeColorOffset))
