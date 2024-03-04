@@ -1593,7 +1593,7 @@ function library:init()
                     if window.colorpicker.selected ~= nil then
                         Y = (objs.trans.Object.Position.Y + objs.trans.Object.Size.Y) - objs.trans.Object.Position.Y
                         Y = math.clamp((pos.Y - objs.transColor.Object.Position.Y) / Y, 0, 0.995)
-                        window.colorpicker.selected:SetTrans(Y);
+                        window.colorpicker.selected:SetTrans( Y);
                         window.colorpicker:Visualize(window.colorpicker.selected.color, Y);
                     end
                 end
