@@ -560,6 +560,7 @@ function library:init()
     function self:SetTheme(theme)
         for i,v in next, theme do
             self.theme[i] = v;
+            library.Accent = self.theme.Accent
         end
        
         self.UpdateThemeColors();
@@ -778,8 +779,7 @@ function library:init()
        
         for _,v in next, library.drawings do
             if v.ThemeColor and library.theme[v.ThemeColor] then
-                library.Accent = utility:AddRGB(library.theme[v.ThemeColor],fromrgb(v.ThemeColorOffset,v.ThemeColorOffset,v.ThemeColorOffset))
-                print(library.Accent)
+                
                 v.Object.Color = utility:AddRGB(library.theme[v.ThemeColor],fromrgb(v.ThemeColorOffset,v.ThemeColorOffset,v.ThemeColorOffset))
             end
             if v.ThemeColorOutline and library.theme[v.ThemeColorOutline] then
@@ -4706,7 +4706,7 @@ function library:CreateSettingsTab(menu)
                         d:SetColor(v.theme[tostring(x)])
                     end
                 end
-                library:SetTheme(v.theme)
+                library:(v.theme)
                 break
             end
         end
