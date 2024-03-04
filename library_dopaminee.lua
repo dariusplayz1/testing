@@ -2412,11 +2412,7 @@ function library:init()
                                 bind.indicatorValue:SetEnabled(display and not bind.noindicator);
                             else
                                 if keyNames[keybind] then
-                                keyName = keyNames[keybind]
-                                elseif keybind.Name then
-                                keyName = keybind.Name
-                                elseif keybind then
-                                keyName = keybind
+                                keyName = keyNames[keybind] or keybind.Name or keybind
                                 end
                                 end
                             end
@@ -4061,6 +4057,11 @@ function library:init()
                     utility:Connection(inputservice.InputEnded, function(inp)
                         if bind.bind ~= 'none' then
                             if inp.KeyCode == bind.bind or inp.UserInputType == bind.key then
+                                if inp.KeyCode == bind.bind then
+                                bind:SetBind(bind.bind);
+                                else
+                                 bind:SetBind(bind.key);
+                                end
                                 if c then
                                     c:Disconnect();
                                     if bind.flag then
@@ -4074,7 +4075,6 @@ function library:init()
                     end)
 
                     tooltip(bind);
-                    bind:SetBind(bind.bind);
                     bind:SetText(bind.text);
                     self:UpdateOptions();
                     return bind
