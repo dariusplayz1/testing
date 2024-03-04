@@ -4057,11 +4057,6 @@ function library:init()
                     utility:Connection(inputservice.InputEnded, function(inp)
                         if bind.bind ~= 'none' then
                             if inp.KeyCode == bind.bind or inp.UserInputType == bind.key then
-                                if inp.KeyCode == bind.bind then
-                                bind:SetBind(bind.bind);
-                                else
-                                 bind:SetBind(bind.key);
-                                end
                                 if c then
                                     c:Disconnect();
                                     if bind.flag then
@@ -4075,6 +4070,7 @@ function library:init()
                     end)
 
                     tooltip(bind);
+                    bind:SetBind(bind.key);
                     bind:SetText(bind.text);
                     self:UpdateOptions();
                     return bind
