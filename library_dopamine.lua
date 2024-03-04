@@ -1,8 +1,3 @@
---[[
-Octohook ui lib informant version
-Developed by liam#4567
-Edited by xz#1111
-]]
 
 -- // Load
 
@@ -47,6 +42,7 @@ local library = {
     notifications = {};
     tweens = {};
     theme = {};
+    usenotifications = false;
     zindexOrder = {
         ['indicator'] = 950;
         ['window'] = 1000;
@@ -4633,6 +4629,10 @@ function library:CreateSettingsTab(menu)
     mainSection:AddBind({text = 'Open / Close', flag = 'togglebind', nomouse = true, noindicator = true, bind = Enum.KeyCode.RightShift, callback = function()
         library:SetOpen(not library.open)
     end});
+
+    mainSection:AddToggle({text = 'Use Notifications on toggles', flag = 'disablemenumovement', callback = function(bool)
+        library.usenotifications = bool
+    end})
 
     mainSection:AddToggle({text = 'Disable Movement If Open', flag = 'disablemenumovement', callback = function(bool)
         if bool and library.open then
