@@ -2411,8 +2411,13 @@ function library:init()
                                 local display = bind.state; if bind.invertindicator then display = not bind.state; end
                                 bind.indicatorValue:SetEnabled(display and not bind.noindicator);
                             else
-                                if keybind.Name then
-                                keyName = keyNames[keybind] or keybind.Name or keybind
+                                if keyNames[keybind] then
+                                keyName = keyNames[keybind]
+                                elseif keybind.Name then
+                                keyName = keybind.Name
+                                elseif keybind then
+                                keyName = keybind
+                                end
                                 end
                             end
                             if self.bind ~= 'none' then
