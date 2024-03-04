@@ -60,16 +60,14 @@ local library = {
         ['gradientp45'] = 'https://raw.githubusercontent.com/portallol/luna/main/modules/gradient45.png';
         ['colorhue'] = 'https://raw.githubusercontent.com/portallol/luna/main/modules/lgbtqshit.png';
         ['colortrans'] = 'https://raw.githubusercontent.com/portallol/luna/main/modules/trans.png';
-        ["blackgr"] = "https://github.com/dariusplayz1/dopamine/blob/main/ceva.png?raw=true";
-       
     };
     numberStrings = {['Zero'] = 0, ['One'] = 1, ['Two'] = 2, ['Three'] = 3, ['Four'] = 4, ['Five'] = 5, ['Six'] = 6, ['Seven'] = 7, ['Eight'] = 8, ['Nine'] = 9};
-    signal = loadstring(game:HttpGet('https://raw.githubusercontent.com/dariusplayz1/testing/main/seel.lua'))();
+    signal = loadstring(game:HttpGet('https://raw.githubusercontent.com/Quenty/NevermoreEngine/main/src/signal/src/Shared/Signal.lua'))();
     open = false;
     opening = false;
     hasInit = false;
-    cheatname = startupArgs.cheatname or 'dopamine';
-    gamename = startupArgs.gamename or 'trident survival';
+    cheatname = startupArgs.cheatname or 'octohook';
+    gamename = startupArgs.gamename or 'universal';
     fileext = startupArgs.fileext or '.txt';
 }
 
@@ -101,7 +99,7 @@ library.themes = {
         }
     },
     {
-        name = 'Moonlight',
+        name = 'Informant_V1',
         theme = {
             ['Accent']                    = fromrgb(103,89,179);
             ['Background']                = fromrgb(22,22,31);
@@ -560,7 +558,6 @@ function library:init()
         for i,v in next, theme do
             self.theme[i] = v;
         end
-       
         self.UpdateThemeColors();
     end
 
@@ -604,6 +601,9 @@ function library:init()
     end
 
     function self:SaveConfig(name)
+        if not self:GetConfig(name) then
+            return
+        end
 
         local s,e = pcall(function()
             local cfg = {};
@@ -774,7 +774,6 @@ function library:init()
     end
 
     function self.UpdateThemeColors()
-       
         for _,v in next, library.drawings do
             if v.ThemeColor and library.theme[v.ThemeColor] then
                 v.Object.Color = utility:AddRGB(library.theme[v.ThemeColor],fromrgb(v.ThemeColorOffset,v.ThemeColorOffset,v.ThemeColorOffset))
@@ -783,7 +782,6 @@ function library:init()
                 v.Object.OutlineColor = utility:AddRGB(library.theme[v.ThemeColorOutline],fromrgb(v.OutlineThemeColorOffset,v.OutlineThemeColorOffset,v.OutlineThemeColorOffset))
             end
         end
-        
     end
 
     function self:SendNotification(message, time, color)
@@ -946,7 +944,7 @@ function library:init()
             })
 
             objs.textlabel = utility:Draw('Text', {
-                Position = newUDim2(.5,0,0,.8);
+                Position = newUDim2(.5,0,0,1);
                 ThemeColor = 'Primary Text';
                 Text = indicator.title;
                 Size = 13;
@@ -1364,6 +1362,7 @@ function library:init()
                     Parent = objs.mainColor;
                 })
 
+
                 objs.colorBorder = utility:Draw('Square', {
                     Size = newUDim2(1,2,1,2);
                     Position = newUDim2(0,-1,0,-1);
@@ -1408,7 +1407,6 @@ function library:init()
                     Color = c3new(1,0,0);
                     ZIndex = z+2;
                     Parent = objs.background;
-                    Visible = false;
                 })
 
                 objs.trans = utility:Draw('Image', {
@@ -1416,7 +1414,6 @@ function library:init()
                     Data = library.images.colortrans;
                     ZIndex = z+3;
                     Parent = objs.transColor;
-                     Visible = false;    
                 })
 
                 objs.transBorder = utility:Draw('Square', {
@@ -1425,7 +1422,6 @@ function library:init()
                     ThemeColor = 'Border';
                     ZIndex = z+1;
                     Parent = objs.transColor;
-                     Visible = false;
                 })
 
                 objs.transDetector = utility:Draw('Square',{
@@ -1433,7 +1429,6 @@ function library:init()
                     Transparency = 0;
                     ZIndex = z+10;
                     Parent = objs.transColor;
-                     Visible = false;
                 })
 
                 objs.pointer = utility:Draw('Square', {
@@ -1442,7 +1437,6 @@ function library:init()
                     Color = c3new(1,1,1);
                     ZIndex = z+6;
                     Parent = objs.mainColor;
-                        
                 })
 
                 objs.pointerBorder = utility:Draw('Square', {
@@ -1473,7 +1467,6 @@ function library:init()
                     Color = c3new(1,1,1);
                     ZIndex = z+5;
                     Parent = objs.trans;
-                     Visible = false;
                 })
 
                 objs.transSliderBorder = utility:Draw('Square', {
@@ -1482,8 +1475,6 @@ function library:init()
                     Color = c3new(0,0,0);
                     ZIndex = z+4;
                     Parent = objs.transSlider;
-                     Visible = false;
-                    
                 })
 
                 objs.rBackground = utility:Draw('Square', {
@@ -1572,7 +1563,7 @@ function library:init()
 
                 local draggingHue, draggingSat, draggingTrans = false, false, false;
 
-             local function updateSatVal(pos)
+                local function updateSatVal(pos)
                     if window.colorpicker.selected ~= nil then
                         local hue, sat, val = window.colorpicker.selected.color:ToHSV()
                         X = (objs.mainColor.Object.Position.X + objs.mainColor.Object.Size.X) - objs.mainColor.Object.Position.X
@@ -1580,7 +1571,7 @@ function library:init()
                         X = math.clamp((pos.X - objs.mainColor.Object.Position.X) / X, 0, 0.995)
                         Y = math.clamp((pos.Y - objs.mainColor.Object.Position.Y) / Y, 0, 0.995)
                         sat, val = 1 - X, 1 - Y;
-                        window.colorpicker.selected:SetColor(fromhsv(hue,sat,val));
+                        window.colorpicker.selected:SetColor(fromhsv(hue,1 - sat,val));
                         window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
@@ -1591,7 +1582,7 @@ function library:init()
                         X = (objs.hue.Object.Position.X + objs.hue.Object.Size.X) - objs.hue.Object.Position.X
                         X = math.clamp((pos.X - objs.hue.Object.Position.X) / X, 0, 0.995)
                         hue = 1 - X
-                        window.colorpicker.selected:SetColor(fromhsv(hue,sat,val));
+                        window.colorpicker.selected:SetColor(fromhsv(hue,1 - sat,val));
                         window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
@@ -1643,7 +1634,7 @@ function library:init()
             function window.colorpicker:Visualize(c3, a)
                 if typeof(c3) ~= 'Color3' then return end
                 if typeof(a) ~= 'number' then return end
-                local h,s,v = c3:ToHSV(c3);
+                local h,s,v = c3:ToHSV();
                 h = h == 0 and 1 or h;
                 self.color = c3;
                 self.trans = a;
@@ -2262,7 +2253,6 @@ function library:init()
                         function color:SetColor(c3, nocallback)
                             if typeof(c3) == 'Color3' then
                                 local h,s,v = c3:ToHSV(); c3 = fromhsv(h, clamp(s,.005,.995), clamp(v,.005,.995))
-                                s = 1 - s
                                 self.color = c3;
                                 self.objects.background.Color = c3;
                                 if not nocallback then
@@ -3633,7 +3623,6 @@ function library:init()
                     function color:SetColor(c3, nocallback)
                         if typeof(c3) == 'Color3' then
                             local h,s,v = c3:ToHSV(); c3 = fromhsv(h, clamp(s,.005,.995), clamp(v,.005,.995));
-                            s = 1 - s
                             self.color = c3;
                             self.objects.background.Color = c3;
                             if not nocallback then
@@ -3899,9 +3888,7 @@ function library:init()
                         if apply then
                             box:SetInput(input);
                         end
-                        if c then
                         c:Disconnect();
-                        end
                     end
 
                     tooltip(box);
@@ -4500,8 +4487,8 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {"Dopamine.wtf", true},
-                {tostring(library.gamename), true},
+                {"informant.wtf", true},
+                {"V"..getgenv().Config.Version, true},
                 {getgenv().luaguardvars.DiscordName, true},
                 {'0 fps', true},
                 {'0ms', true},
@@ -4610,7 +4597,7 @@ function library:init()
         end
     end)
 
-    self.keyIndicator = self.NewIndicator({title = 'Keybinds', pos = newUDim2(0,15,0,3), enabled = false});
+    self.keyIndicator = self.NewIndicator({title = 'Keybinds', pos = newUDim2(0,15,0,325), enabled = false});
     
     self.targetIndicator = self.NewIndicator({title = 'Target Info', pos = newUDim2(0,15,0,350), enabled = false});
     self.targetName = self.targetIndicator:AddValue({key = 'Name     :', value = 'nil'})
@@ -4627,15 +4614,57 @@ end
 
 function library:CreateSettingsTab(menu)
     local settingsTab = menu:AddTab('Settings', 999);
+    local configSection = settingsTab:AddSection('Config', 2);
     local mainSection = settingsTab:AddSection('Main', 1);
+    local creditsSection = settingsTab:AddSection('Credits', 2);
+    creditsSection:AddSeparator({text = 'Owners/Developers'});
+    creditsSection:AddText({text = "xz#1111"})
+    creditsSection:AddText({text = "goof#1000"})
+    creditsSection:AddSeparator({text = 'Helpers'});
+    creditsSection:AddText({text = "encode#9999"})
+    creditsSection:AddText({text = "Vault#5434"})
+
+
+    configSection:AddBox({text = 'Config Name', flag = 'configinput'})
+    configSection:AddList({text = 'Config', flag = 'selectedconfig'})
+
+    local function refreshConfigs()
+        library.options.selectedconfig:ClearValues();
+        for _,v in next, listfiles(self.cheatname..'/'..self.gamename..'/configs') do
+            local ext = '.'..v:split('.')[#v:split('.')];
+            if ext == self.fileext then
+                library.options.selectedconfig:AddValue(v:split('\\')[#v:split('\\')]:sub(1,-#ext-1))
+            end
+        end
+    end
+
+    configSection:AddButton({text = 'Load', confirm = false, callback = function()
+        library:LoadConfig(library.flags.selectedconfig);
+    end}):AddButton({text = 'Save', confirm = true, callback = function()
+        library:SaveConfig(library.flags.selectedconfig);
+    end})
+
+    configSection:AddButton({text = 'Create', confirm = false, callback = function()
+        if library.flags.configinput == "" then 
+            return
+        end
+        if library:GetConfig(library.flags.configinput) then
+            return
+        end
+        writefile(self.cheatname..'/'..self.gamename..'/configs/'..library.flags.configinput.. self.fileext, http:JSONEncode({}));
+        refreshConfigs()
+    end}):AddButton({text = 'Delete', confirm = true, callback = function()
+        if library:GetConfig(library.flags.selectedconfig) then
+            delfile(self.cheatname..'/'..self.gamename..'/configs/'..library.flags.selectedconfig.. self.fileext);
+            refreshConfigs()
+        end
+    end})
+
+    refreshConfigs()
 
     mainSection:AddBind({text = 'Open / Close', flag = 'togglebind', nomouse = true, noindicator = true, bind = Enum.KeyCode.RightShift, callback = function()
         library:SetOpen(not library.open)
     end});
-
-    mainSection:AddToggle({text = 'Use Notifications on toggles', flag = 'disablemenumovement', callback = function(bool)
-        library.usenotifications = bool
-    end})
 
     mainSection:AddToggle({text = 'Disable Movement If Open', flag = 'disablemenumovement', callback = function(bool)
         if bool and library.open then
@@ -4651,9 +4680,25 @@ function library:CreateSettingsTab(menu)
             actionservice:UnbindAction('FreezeMovement');
         end
     end})
+
+    mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()
+        local res = syn.request({
+            Url = 'http://127.0.0.1:6463/rpc?v=1',
+            Method = 'POST',
+            Headers = {
+                ['Content-Type'] = 'application/json',
+                Origin = 'https://discord.com'
+            },
+            Body = game:GetService('HttpService'):JSONEncode({
+                cmd = 'INVITE_BROWSER',
+                nonce = game:GetService('HttpService'):GenerateGUID(false),
+                args = {code = getgenv().Config.Invite}
+            })
+        })
+    end})
     
     mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
-        setclipboard("https://discord.gg/GUGe685AEJ")
+        setclipboard('https://discord.gg/'..getgenv().Config.Invite)
     end})
 
     mainSection:AddButton({text = 'Rejoin Server', confirm = true, callback = function()
@@ -4691,7 +4736,7 @@ function library:CreateSettingsTab(menu)
     for _,v in next, library.themes do
         table.insert(themeStrings, v.name)
     end
-    local themeSection = settingsTab:AddSection('Theme', 2);
+    local themeSection = settingsTab:AddSection('Theme', 1);
     local setByPreset = false
 
     themeSection:AddList({text = 'Presets', flag = 'preset_theme', values = themeStrings, callback = function(newTheme)
@@ -4703,7 +4748,7 @@ function library:CreateSettingsTab(menu)
                         d:SetColor(v.theme[tostring(x)])
                     end
                 end
-                library:(v.theme)
+                library:SetTheme(v.theme)
                 break
             end
         end
