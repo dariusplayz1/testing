@@ -43,7 +43,6 @@ local library = {
     tweens = {};
     theme = {};
     usenotifications = false;
-    Accent = fromrgb(204, 45, 45);
     zindexOrder = {
         ['indicator'] = 950;
         ['window'] = 1000;
@@ -560,7 +559,6 @@ function library:init()
     function self:SetTheme(theme)
         for i,v in next, theme do
             self.theme[i] = v;
-           -- library.Accent = self.theme.Accent
         end
        
         self.UpdateThemeColors();
