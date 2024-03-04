@@ -4700,6 +4700,7 @@ function library:CreateSettingsTab(menu)
                     if v.theme[tostring(x)] ~= nil then
                         d:SetColor(v.theme[tostring(x)])
                         library.Accent = v.theme.Accent
+                        print(library.Accent)
                     end
                 end
                 library:SetTheme(v.theme)
