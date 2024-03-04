@@ -67,8 +67,8 @@ local library = {
     open = false;
     opening = false;
     hasInit = false;
-    cheatname = startupArgs.cheatname or 'octohook';
-    gamename = startupArgs.gamename or 'universal';
+    cheatname = startupArgs.cheatname or 'Dopamine.wtf';
+    gamename = startupArgs.gamename or 'trident_survival';
     fileext = startupArgs.fileext or '.txt';
 }
 
@@ -100,7 +100,7 @@ library.themes = {
         }
     },
     {
-        name = 'Informant_V1',
+        name = 'Moonlight',
         theme = {
             ['Accent']                    = fromrgb(103,89,179);
             ['Background']                = fromrgb(22,22,31);
@@ -4488,8 +4488,8 @@ function library:init()
         self.watermark = {
             objects = {};
             text = {
-                {"informant.wtf", true},
-                {"V"..getgenv().Config.Version, true},
+                {"Dopamine.wtf", true},
+                {"Free Build", true},
                 {getgenv().luaguardvars.DiscordName, true},
                 {'0 fps', true},
                 {'0ms', true},
