@@ -1568,7 +1568,7 @@ function library:init()
                 local function updateSatVal(pos)
                     if window.colorpicker.selected ~= nil then
                         local hue, sat, val = window.colorpicker.selected.color:ToHSV()
-                        print(hue, sat, val)
+                        sat = 1 - sat
                         X = (objs.mainColor.Object.Position.X + objs.mainColor.Object.Size.X) - objs.mainColor.Object.Position.X
                         Y = (objs.mainColor.Object.Position.Y + objs.mainColor.Object.Size.Y) - objs.mainColor.Object.Position.Y
                         X = math.clamp((pos.X - objs.mainColor.Object.Position.X) / X, 0, 0.995)
@@ -1582,6 +1582,7 @@ function library:init()
                 local function updateHue(pos)
                     if window.colorpicker.selected ~= nil then
                         local hue, sat, val = window.colorpicker.selected.color:ToHSV()
+                        sat = 1 - sat
                         X = (objs.hue.Object.Position.X + objs.hue.Object.Size.X) - objs.hue.Object.Position.X
                         X = math.clamp((pos.X - objs.hue.Object.Position.X) / X, 0, 0.995)
                         hue = 1 - X
@@ -2256,6 +2257,7 @@ function library:init()
                         function color:SetColor(c3, nocallback)
                             if typeof(c3) == 'Color3' then
                                 local h,s,v = c3:ToHSV(); c3 = fromhsv(h, clamp(s,.005,.995), clamp(v,.005,.995))
+                                s = 1 - s
                                 self.color = c3;
                                 self.objects.background.Color = c3;
                                 if not nocallback then
@@ -3626,6 +3628,7 @@ function library:init()
                     function color:SetColor(c3, nocallback)
                         if typeof(c3) == 'Color3' then
                             local h,s,v = c3:ToHSV(); c3 = fromhsv(h, clamp(s,.005,.995), clamp(v,.005,.995));
+                            s = 1 - s
                             self.color = c3;
                             self.objects.background.Color = c3;
                             if not nocallback then
