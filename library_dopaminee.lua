@@ -2612,6 +2612,7 @@ function library:init()
                                         slider.focused = true;
                                         inputNumber = '';
                                         c = utility:Connection(inputservice.InputBegan, function(inp)
+                                           print(inp)
                                             if library.numberStrings[inp.KeyCode.Name] then
                                                 local number = library.numberStrings[inp.KeyCode.Name];
                                                 inputNumber = inputNumber..tostring(number);
