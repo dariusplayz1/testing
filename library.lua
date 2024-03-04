@@ -1576,14 +1576,13 @@ function library:init()
              local function updateSatVal(pos)
                     if window.colorpicker.selected ~= nil then
                         local hue, sat, val = window.colorpicker.selected.color:ToHSV()
-                        local oldsat = sat
                         X = (objs.mainColor.Object.Position.X + objs.mainColor.Object.Size.X) - objs.mainColor.Object.Position.X
                         Y = (objs.mainColor.Object.Position.Y + objs.mainColor.Object.Size.Y) - objs.mainColor.Object.Position.Y
                         X = math.clamp((pos.X - objs.mainColor.Object.Position.X) / X, 0, 0.995)
                         Y = math.clamp((pos.Y - objs.mainColor.Object.Position.Y) / Y, 0, 0.995)
                         sat, val = 1 - X, 1 - Y;
                         window.colorpicker.selected:SetColor(fromhsv(hue,1 - sat,val));
-                        window.colorpicker:Visualize(fromhsv(hue, 1 - oldsat, val), window.colorpicker.selected.trans);
+                        window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
 
@@ -1594,7 +1593,7 @@ function library:init()
                         X = math.clamp((pos.X - objs.hue.Object.Position.X) / X, 0, 0.995)
                         hue = 1 - X
                         window.colorpicker.selected:SetColor(fromhsv(hue,1 - sat,val));
-                        window.colorpicker:Visualize(fromhsv(hue, 1 - sat, val), window.colorpicker.selected.trans);
+                        window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
 
