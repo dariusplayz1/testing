@@ -1565,29 +1565,27 @@ function library:init()
 
                 local draggingHue, draggingSat, draggingTrans = false, false, false;
 
-                local function updateSatVal(pos)
+             local function updateSatVal(pos)
                     if window.colorpicker.selected ~= nil then
                         local hue, sat, val = window.colorpicker.selected.color:ToHSV()
-                         sat = 1 - sat
                         X = (objs.mainColor.Object.Position.X + objs.mainColor.Object.Size.X) - objs.mainColor.Object.Position.X
                         Y = (objs.mainColor.Object.Position.Y + objs.mainColor.Object.Size.Y) - objs.mainColor.Object.Position.Y
                         X = math.clamp((pos.X - objs.mainColor.Object.Position.X) / X, 0, 0.995)
                         Y = math.clamp((pos.Y - objs.mainColor.Object.Position.Y) / Y, 0, 0.995)
-                        val = 1 - Y;
+                        sat, val = 1 - X, 1 - Y;
                         window.colorpicker.selected:SetColor(fromhsv(hue,sat,val));
-                        window.colorpicker:Visualize(fromhsv(hue,sat, val), window.colorpicker.selected.trans);
+                        window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
 
                 local function updateHue(pos)
                     if window.colorpicker.selected ~= nil then
                         local hue, sat, val = window.colorpicker.selected.color:ToHSV()
-                        sat = 1 - sat
                         X = (objs.hue.Object.Position.X + objs.hue.Object.Size.X) - objs.hue.Object.Position.X
                         X = math.clamp((pos.X - objs.hue.Object.Position.X) / X, 0, 0.995)
                         hue = 1 - X
                         window.colorpicker.selected:SetColor(fromhsv(hue,sat,val));
-                        window.colorpicker:Visualize(fromhsv(hue, 1-X, val), window.colorpicker.selected.trans);
+                        window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
                     end
                 end
 
