@@ -4617,14 +4617,6 @@ function library:CreateSettingsTab(menu)
     local settingsTab = menu:AddTab('Settings', 999);
     local configSection = settingsTab:AddSection('Config', 2);
     local mainSection = settingsTab:AddSection('Main', 1);
-    local creditsSection = settingsTab:AddSection('Credits', 2);
-    creditsSection:AddSeparator({text = 'Owners/Developers'});
-    creditsSection:AddText({text = "xz#1111"})
-    creditsSection:AddText({text = "goof#1000"})
-    creditsSection:AddSeparator({text = 'Helpers'});
-    creditsSection:AddText({text = "encode#9999"})
-    creditsSection:AddText({text = "Vault#5434"})
-
 
     configSection:AddBox({text = 'Config Name', flag = 'configinput'})
     configSection:AddList({text = 'Config', flag = 'selectedconfig'})
@@ -4683,7 +4675,7 @@ function library:CreateSettingsTab(menu)
     end})
 
     mainSection:AddButton({text = 'Join Discord', flag = 'joindiscord', confirm = true, callback = function()
-        local res = syn.request({
+        local res = request({
             Url = 'http://127.0.0.1:6463/rpc?v=1',
             Method = 'POST',
             Headers = {
@@ -4693,13 +4685,13 @@ function library:CreateSettingsTab(menu)
             Body = game:GetService('HttpService'):JSONEncode({
                 cmd = 'INVITE_BROWSER',
                 nonce = game:GetService('HttpService'):GenerateGUID(false),
-                args = {code = getgenv().Config.Invite}
+                args = {code = https://discord.gg/GUGe685AEJ}
             })
         })
     end})
     
     mainSection:AddButton({text = 'Copy Discord', flag = 'copydiscord', callback = function()
-        setclipboard('https://discord.gg/'..getgenv().Config.Invite)
+        setclipboard('https://discord.gg/GUGe685AEJ')
     end})
 
     mainSection:AddButton({text = 'Rejoin Server', confirm = true, callback = function()
