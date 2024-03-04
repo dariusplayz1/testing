@@ -1593,7 +1593,7 @@ function library:init()
                         X = math.clamp((pos.X - objs.hue.Object.Position.X) / X, 0, 0.995)
                         hue = 1 - X
                         window.colorpicker.selected:SetColor(fromhsv(hue,1 - sat,val));
-                        window.colorpicker:Visualize(fromhsv(hue, sat, val), window.colorpicker.selected.trans);
+                        window.colorpicker:Visualize(fromhsv(hue, 1 - sat, val), window.colorpicker.selected.trans);
                     end
                 end
 
