@@ -2411,7 +2411,7 @@ function library:init()
                                 local display = bind.state; if bind.invertindicator then display = not bind.state; end
                                 bind.indicatorValue:SetEnabled(display and not bind.noindicator);
                             else
-                                keyName = keyNames[keybind] or keybind.Name or keybind
+                                keyName = keyNames[keybind] or keybind
                             end
                             if self.bind ~= 'none' then
                                 bind.state = false
@@ -2612,7 +2612,7 @@ function library:init()
                                         slider.focused = true;
                                         inputNumber = '';
                                         c = utility:Connection(inputservice.InputBegan, function(inp)
-                                           print(inp)
+                                        
                                             if library.numberStrings[inp.KeyCode.Name] then
                                                 local number = library.numberStrings[inp.KeyCode.Name];
                                                 inputNumber = inputNumber..tostring(number);
