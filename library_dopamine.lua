@@ -779,7 +779,7 @@ function library:init()
         for _,v in next, library.drawings do
             if v.ThemeColor and library.theme[v.ThemeColor] then
                 v.Object.Color = utility:AddRGB(library.theme[v.ThemeColor],fromrgb(v.ThemeColorOffset,v.ThemeColorOffset,v.ThemeColorOffset))
-                library.Accent = utility:AddRGB(library.theme[v.ThemeColor],fromrgb(v.ThemeColorOffset,v.ThemeColorOffset,v.ThemeColorOffset))
+                library.Accent = v.Object.Color
             end
             if v.ThemeColorOutline and library.theme[v.ThemeColorOutline] then
                 v.Object.OutlineColor = utility:AddRGB(library.theme[v.ThemeColorOutline],fromrgb(v.OutlineThemeColorOffset,v.OutlineThemeColorOffset,v.OutlineThemeColorOffset))
