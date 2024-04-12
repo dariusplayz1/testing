@@ -162,7 +162,7 @@ function ESP:Get_Tool(Player)
             return v.Name 
         end
     end
-    return "none"
+    return "Hands"
 end
 
 function ESP:Get_Health(Player)
