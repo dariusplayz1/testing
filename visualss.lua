@@ -614,7 +614,7 @@ end
 do -- ESP Functions
     function ESP:Player(Instance, Data)
         if Instance == nil then
-            return warn("error: function ESP.Player argument #1 expected Player, got nil")
+       
         end
         if Data == nil or type(Data) ~= "table" then
             Data = {
@@ -649,7 +649,7 @@ do -- ESP Functions
     end
     function ESP:Object(Instance, Data)
         if Data == nil or type(Data) ~= "table" then
-            return warn("error: function ESP.Object argument #2 expected table, got nil")
+         
         end
         local Addition = Data.Addition or Data.addition or Data.add or Data.Add or {}
         if Addition.Text == nil then
