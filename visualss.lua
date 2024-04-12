@@ -253,7 +253,7 @@ do -- Player Metatable
                 Image.Visible = false
                 return
             end
-            local Current_Health, Health_Maximum = ESP:Get_Health(self.Player), Humanoid.MaxHealth
+            local Current_Health, Health_Maximum, Humanoid = ESP:Get_Health(self.Player), Humanoid.MaxHealth, Character:FindFirstChildOfClass("Humanoid")
             if Head and HumanoidRootPart and Current_Health > 0 then
                 local Dimensions = Framework:Get_Bounding_Vectors(HumanoidRootPart)
                 local HRP_Position, On_Screen = Camera:WorldToViewportPoint(HumanoidRootPart.Position)
