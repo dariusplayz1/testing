@@ -1,4 +1,18 @@
-
+    local ToolNames = {
+        ["Bruno's M4A1"] = true, ["Crossbow"] = true, ["Salvaged Shovel"] = true, ["Salvaged Pipe Rifle"] = true,
+        ["Steel Axe"] = true, ["Salvaged RPG"] = true, ["Small Medkit"] = true, ["Yellow Keycard"] = true,
+        ["Salvaged Pump Action"] = true, ["Pink Keycard"] = true, ["Salvaged SMG"] = true, ["Salvaged AK47"] = true,
+        ["Boulder"] = true, ["Care Package Signal"] = true, ["Salvaged AK74u"] = true, ["ez shovel"] = true,
+        ["Dynamite Stick"] = true, ["Military Barrett"] = true, ["Nail Gun"] = true, ["Iron Shard Hatchet"] = true,
+        ["Military M4A1"] = true, ["Wooden Spear"] = true, ["Dynamite Bundle"] = true, ["Stone Spear"] = true,
+        ["Salvaged P250"] = true, ["Iron Shard Pickaxe"] = true, ["Military PKM"] = true, ["Steel Shovel"] = true,
+        ["Timed Charge"] = true, ["Steel Pickaxe"] = true, ["Lighter"] = true, ["Blueprint"] = true,
+        ["Salvaged M14"] = true, ["Machete"] = true, ["Stone Hatchet"] = true, ["Bandage"] = true,
+        ["Saw Bat"] = true, ["Wooden Bow"] = true, ["Military Grenade"] = true, ["Health Pen"] = true,
+        ["Candy Cane"] = true, ["Hammer"] = true, ["Military AA12"] = true, ["Salvaged Python"] = true,
+        ["Purple Keycard"] = true, ["Bone Tool"] = true, ["Stone Pickaxe"] = true, ["Salvaged Skorpion"] = true,
+        ["Salvaged Break Action"] = true
+    }
 
 -- Services
 local Workspace = game:GetService("Workspace")
@@ -143,8 +157,12 @@ function ESP:Get_Tool(Player)
     if self.Overrides.Get_Tool ~= nil then
         return self.Overrides.Get_Tool(Player)
     end
-    
-    return "Hands"
+    for _, v in ipairs(Player.Character:GetChildren()) do
+        if ToolNames[v.Name] then 
+            return v.Name 
+        end
+    end
+    return "none"
 end
 
 function ESP:Get_Health(Player)
