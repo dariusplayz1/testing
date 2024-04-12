@@ -136,7 +136,7 @@ function ESP:Get_Character(Player)
     if ESP.Overrides.Get_Character ~= nil then
         return ESP.Overrides.Get_Character(Player)
     end
-    return Player.model
+    return Player.Character
 end
 
 function ESP:Get_Tool(Player)
