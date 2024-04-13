@@ -272,7 +272,6 @@ do -- Player Metatable
                 return
             end
             local Humanoid = Character:FindFirstChildOfClass("Humanoid")
-            if not Humanoid then return end
             local Current_Health, Health_Maximum = ESP:Get_Health(self.Player), Humanoid.MaxHealth
             if Head and HumanoidRootPart and Current_Health > 0 then
                 local Dimensions = Framework:Get_Bounding_Vectors(HumanoidRootPart)
