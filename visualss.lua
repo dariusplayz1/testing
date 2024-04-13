@@ -416,14 +416,13 @@ do -- Player Metatable
                     Name.Color = Is_Highlighted and Highlight_Color or Name_Settings.Color
                     Name.OutlineColor = Name_Settings.OutlineColor
                     Name.Transparency = Framework:Drawing_Transparency(Name_Settings.Transparency)
-                    local char = ESP:Get_Character
-                    Name.Text = char.Name
+                    Name.Text = Character.Name
                     Name.Visible = Name_Settings.Enabled
                     NameBold.Color = Is_Highlighted and Highlight_Color or Name_Settings.Color
                     NameBold.OutlineColor = Name_Settings.OutlineColor
                     NameBold.Transparency = Framework:Drawing_Transparency(Name_Settings.Transparency)
                     NameBold.Position = Name.Position + Vector2.new(1, 0)
-                    NameBold.Text = char.Name
+                    NameBold.Text = Character.Name
                     NameBold.Visible = Name.Visible and ESP.Settings.Bold_Text
 
                     -- Distance
